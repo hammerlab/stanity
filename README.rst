@@ -1,8 +1,11 @@
 stanity
-======
+=========
 python convenience functions for working with Stan models (via pystan)
 
-Currently not much here.
+Functionality:
+
+stanity.fit
+    thin wrapper around ``pystan.stan`` that caches compiled models
 
 Installation
 -------------
