@@ -9,7 +9,7 @@ stanity.fit
 stanity.psisloo
     thin wrapper around ``psisloo`` (implemented in https://github.com/avehtari/PSIS/blob/master/py/psis.py)
 stanity.loo_compare
-    compare model fit using PSIS-LOO, analogous to that implemented in the R package loo
+    compare model fit using PSIS-LOO, similar to methods implemented in the R package loo
 
 Installation
 -------------
