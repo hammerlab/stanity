@@ -1,5 +1,5 @@
 
-from PSIS.py import psis
+import psis
 import pandas
 import math
 import numpy
