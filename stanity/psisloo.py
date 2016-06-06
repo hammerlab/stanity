@@ -21,11 +21,11 @@ class Psisloo(object):
         self.summary['greater than 1'] = self.summary.pareto_k > 1
 
     def print_summary(self):
-        self.summary.apply(numpy.mean)[2:]
+        return self.summary.apply(numpy.mean)[2:]
 
     def plot(self):
         seaborn.pointplot(y = self.pointwise.pareto_k, x = self.pointwise.index, join = False)
-        pyplot.axhline(0.5)
+        #pyplot.axhline(0.5)
 
 def psisloo(log_lik, *args, **kwargs):
     """
