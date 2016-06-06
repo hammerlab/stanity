@@ -16,7 +16,7 @@ class Psisloo(object):
 
 	def _summarize_pointwise(self):
 		self.summary = self.pointwise.copy()
-    	self.summary['greater than 0.5'] = self.summary.pareto_k > 0.5
+		self.summary['greater than 0.5'] = self.summary.pareto_k > 0.5
 		self.summary['greater than 1'] = self.summary.pareto_k > 1
 
     def print_summary(self):
