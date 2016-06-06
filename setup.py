@@ -35,7 +35,4 @@ setup(
         "pandas",
         "seaborn",
     ],
-    dependency_links=[
-        "https://raw.githubusercontent.com/avehtari/PSIS/master/py/psis.py"
-    ],
 )
