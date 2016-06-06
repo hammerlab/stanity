@@ -10,13 +10,14 @@ class Psisloo(object):
     def __init__(self, log_lik):
     	self.log_lik = log_lik
     	self.result = psis.psisloo(log_lik=log_lik)
-    	self.looic = print(-2*self.result[0])
+    	self.looic = -2*self.result[0]
+        self.elpd = self.result[0]
     	self.pointwise = pandas.DataFrame({'pointwise_elpd' : self.result[1], 'pareto_k': self.result[2]})
     	self._summarize_pointwise()
 
 	def _summarize_pointwise(self):
 		self.summary = self.pointwise.copy()
-    	self.summary['greater than 0.5'] = self.summary.pareto_k > 0.5
+		self.summary['greater than 0.5'] = self.summary.pareto_k > 0.5
 		self.summary['greater than 1'] = self.summary.pareto_k > 1
 
     def print_summary(self):
