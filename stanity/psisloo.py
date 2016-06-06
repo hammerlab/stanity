@@ -10,7 +10,8 @@ class Psisloo(object):
     def __init__(self, log_lik):
         self.log_lik = log_lik
         self.result = psis.psisloo(log_lik=log_lik)
-        self.looic = print(-2*self.result[0])
+        self.looic = -2*self.result[0]
+        self.looic = self.result[0]
         self.pointwise = pandas.DataFrame({'pointwise_elpd' : self.result[1], 'pareto_k': self.result[2]})
         self._summarize_pointwise()
 
