@@ -4,7 +4,6 @@ import pandas
 import math
 import numpy
 import seaborn
-import matplotlib as pyplot
 
 class Psisloo(object):
     def __init__(self, log_lik):
@@ -12,7 +11,9 @@ class Psisloo(object):
         self.result = psis.psisloo(log_lik=log_lik)
         self.looic = -2*self.result[0]
         self.elpd = self.result[0]
-        self.pointwise = pandas.DataFrame({'pointwise_elpd' : self.result[1], 'pareto_k': self.result[2]})
+        self.pointwise = pandas.DataFrame(
+            {'pointwise_elpd' : self.result[1],
+             'pareto_k': self.result[2]})
         self._summarize_pointwise()
 
     def _summarize_pointwise(self):
@@ -24,10 +25,13 @@ class Psisloo(object):
         return self.summary.apply(numpy.mean)[2:]
 
     def plot(self):
-        seaborn.pointplot(y = self.pointwise.pareto_k, x = self.pointwise.index, join = False)
+        seaborn.pointplot(
+            y = self.pointwise.pareto_k,
+            x = self.pointwise.index,
+            join = False)
         #pyplot.axhline(0.5)
 
-def psisloo(log_lik, *args, **kwargs):
+def psisloo(log_lik):
     """
     Summarize the model fit using Pareto-smoothed importance sampling (PSIS) 
     and approximate Leave-One-Out cross-validation (LOO).
@@ -36,7 +40,7 @@ def psisloo(log_lik, *args, **kwargs):
         e.x.
         loosummary = loo(stan_fit.extract()['log_lik'])
 
-    Returns a Psisloo object 
+    Returns a Psisloo object
 
     References
     ----------
@@ -64,15 +68,31 @@ def loo_compare(psisloo1, psisloo2):
 
     Returns
     -------------------
-    Dict summarizing difference between two models, where a positive value indicates
-        that model2 is a better fit than model1.
+    Dict with two values:
+
+        diff: difference in elpd (estimated log predictive density) 
+                between two models, where a positive value indicates
+                that model2 is a better fit than model1.
+
+        se_diff: estimated standard error of the difference
+                between model2 & model1.
 
     """
     ## TODO: confirm that dimensions for psisloo1 & psisloo2 are the same
-    loores = psisloo1.pointwise.join(psisloo2.pointwise, lsuffix = '_m1', rsuffix = '_m2')
+    loores = psisloo1.pointwise.join(
+        psisloo2.pointwise,
+        lsuffix = '_m1',
+        rsuffix = '_m2')
+
     loores['pw_diff'] = loores.pointwise_elpd_m2 - loores.pointwise_elpd_m1
+
     sum_elpd_diff = loores.apply(numpy.sum).pw_diff
     sd_elpd_diff = loores.apply(numpy.std).pw_diff
-    elpd_diff = {'diff' : sum_elpd_diff, 'se_diff' : math.sqrt(len(loores.pw_diff)) * sd_elpd_diff}
+
+    elpd_diff = {
+        'diff' : sum_elpd_diff,
+        'se_diff' : math.sqrt(len(loores.pw_diff)) * sd_elpd_diff
+        }
+    
     return elpd_diff
 
