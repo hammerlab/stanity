@@ -116,7 +116,7 @@ def loo_compare(psisloo1, psisloo2):
     -------------------
     Dict with two values:
 
-        diff: difference in elpd (estimated log predictive density) 
+        diff: difference in elpd (estimated log predicted density) 
                 between two models, where a positive value indicates
                 that model2 is a better fit than model1.
 
