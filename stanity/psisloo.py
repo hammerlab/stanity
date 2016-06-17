@@ -6,9 +6,9 @@ import numpy
 import seaborn
 
 class Psisloo(object):
-    def __init__(self, log_lik):
-        self.log_lik = log_lik
-        self.result = psis.psisloo(log_lik=log_lik)
+    def __init__(self, log_likelihood):
+        self.log_lik = log_likelihood
+        self.result = psis.psisloo(log_lik=self.log_lik)
         self.looic = -2*self.result[0]
         self.elpd = self.result[0]
         self.pointwise = pandas.DataFrame(
@@ -31,7 +31,7 @@ class Psisloo(object):
             join = False)
         #pyplot.axhline(0.5)
 
-def psisloo(log_lik):
+def psisloo(log_likelihood):
     """
     Summarize the model fit using Pareto-smoothed importance sampling (PSIS) 
     and approximate Leave-One-Out cross-validation (LOO).
@@ -52,7 +52,7 @@ def psisloo(log_lik):
     Aki Vehtari and Andrew Gelman (2015). Pareto smoothed importance sampling.
     arXiv preprint arXiv:1507.02646.
     """
-    return Psisloo(log_lik)
+    return Psisloo(log_likelihood)
 
 
 def loo_compare(psisloo1, psisloo2):
