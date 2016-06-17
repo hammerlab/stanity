@@ -35,6 +35,6 @@ setup(
         "pandas",
         "seaborn",
         "matplotlib",
-	"numpy",
+    "numpy",
     ],
 )
