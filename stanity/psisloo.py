@@ -6,6 +6,36 @@ import numpy
 import seaborn
 
 class Psisloo(object):
+    """Approximate leave-one-out cross validation of Bayesian models using PSIS-LOO
+
+    This class stores results from approximate leave-one-out cross validation using
+    Pareto-smoothed importance sampling (PSIS-LOO). Object contains pointwise 
+    expected log predicted density (elpd) and pointwise pareto-k importance 
+    metrics, as well as summary metrics such as WAIC. 
+
+    Taken in concert, these metrics can be used for model comparison and model checking.
+
+    This function is a thin wrapper around Aki Vehtari's `psisloo` function, 
+    included from https://github.com/avehtari/PSIS/blob/master/py/psis.py
+
+    - **parameters**, **types**, **return** and **return types**::
+
+          :param log_likelihood: a matrix of log_likelihood evaluations, per observation * iter
+          :type log_likelihood: matrix
+
+          :param result: output from psis.psisloo on given log_likelihood matrix
+          :type result: list of length 3 - loo (scalar), loos (ndarray), ks (ndarray)
+
+          :param looic: summarized ELPD of the model, multiplied by -2 (on scale of deviance)
+          :type looic: scalar
+
+          :param elpd: summarized ELPD of the model on original scale
+          :type elpd: scalar
+
+          :param pointwise: DataFrame containing pointwise metrics resulting from psisloo call
+          :type pointwise: DataFrame with two columns: pointwise_elpd, & pareto_k
+
+    """
     def __init__(self, log_likelihood):
         self.log_lik = log_likelihood
         self.result = psis.psisloo(log_lik=self.log_lik)
@@ -22,9 +52,22 @@ class Psisloo(object):
         self.summary['greater than 1'] = self.summary.pareto_k > 1
 
     def print_summary(self):
+        """ Numerical summary of pointwise Pareto-k indices
+
+        Reports on frequency of observations with tail indices > 0.5 & 1
+
+        This is a useful metric because too extreme observations may invalidate approximations.
+        It is also a sign that these observations may be more extreme than expected.
+
+        """
         return self.summary.apply(numpy.mean)[2:]
 
     def plot(self):
+        """ Graphical summary of pointwise pareto-k importance-sampling indices
+
+        Pareto-k tail indices are plotted (on the y axis) for each observation unit (on the x axis)
+
+        """
         seaborn.pointplot(
             y = self.pointwise.pareto_k,
             x = self.pointwise.index,
@@ -36,8 +79,11 @@ def psisloo(log_likelihood):
     Summarize the model fit using Pareto-smoothed importance sampling (PSIS) 
     and approximate Leave-One-Out cross-validation (LOO).
     
-    Takes as input a matrix of log_likelihood evaluations, per observation * iter:
-        e.x.
+    Takes as input an ndarray of posterior log likelihood terms [ p(y_i | \theta^s) ]
+        per observation unit.
+
+        e.x. if using pystan:
+
         loosummary = loo(stan_fit.extract()['log_lik'])
 
     Returns a Psisloo object
