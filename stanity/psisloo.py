@@ -10,7 +10,7 @@ class Psisloo(object):
 
     This class stores results from approximate leave-one-out cross validation using
     Pareto-smoothed importance sampling (PSIS-LOO). Object contains pointwise 
-    expected log predicted density (elpd) and pointwise pareto-k importance 
+    expected log predictive density (elpd) and pointwise pareto-k importance 
     metrics, as well as summary metrics such as WAIC. 
 
     Taken in concert, these metrics can be used for model comparison and model checking.
@@ -116,7 +116,7 @@ def loo_compare(psisloo1, psisloo2):
     -------------------
     Dict with two values:
 
-        diff: difference in elpd (estimated log predicted density) 
+        diff: difference in elpd (estimated log predictive density) 
                 between two models, where a positive value indicates
                 that model2 is a better fit than model1.
 
