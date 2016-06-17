@@ -79,14 +79,14 @@ def psisloo(log_likelihood):
     Summarize the model fit using Pareto-smoothed importance sampling (PSIS) 
     and approximate Leave-One-Out cross-validation (LOO).
     
-    Takes as input an ndarray of posterior log likelihood terms [ p(y_i | \theta^s) ]
+    Takes as input an ndarray of posterior log likelihood terms [ p( y_i | theta^s ) ]
         per observation unit.
 
         e.x. if using pystan:
 
-        loosummary = loo(stan_fit.extract()['log_lik'])
+        loosummary = stanity.psisloo(stan_fit.extract()['log_lik'])
 
-    Returns a Psisloo object
+    Returns a Psisloo object. Useful methods such as print_summary() & plot().
 
     References
     ----------
