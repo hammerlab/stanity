@@ -3,7 +3,7 @@ try:
 except ImportError:
     from distutils.core import setup
 
-version = "0.2.1"
+version = "0.2.2"
 
 setup(
     name="stanity",
@@ -34,5 +34,7 @@ setup(
         "future>=0.14.3",
         "pandas",
         "seaborn",
-    ]
+        "matplotlib",
+    "numpy",
+    ],
 )
