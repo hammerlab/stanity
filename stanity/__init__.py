@@ -11,3 +11,7 @@ __all__ = [
     "loo_compare",
     "print_dict",
 ]
+
+from ._version import get_versions
+__version__ = get_versions()['version']
+del get_versions

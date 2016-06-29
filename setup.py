@@ -2,12 +2,13 @@ try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
+import versioneer
 
-version = "0.2.2"
 
 setup(
     name="stanity",
-    version=version,
+    version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass(),
     author="Jacki Buros and Tim O'Donnell",
     author_email="timodonnell@gmail.com",
     packages=["stanity"],
