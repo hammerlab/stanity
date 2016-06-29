@@ -4,7 +4,6 @@ except ImportError:
     from distutils.core import setup
 import versioneer
 
-
 setup(
     name="stanity",
     version=versioneer.get_version(),
@@ -16,7 +15,7 @@ setup(
     license="Apache License",
     description="Helper library for working with Stan models in Python",
     long_description=open('README.rst').read(),
-    download_url='https://github.com/hammerlab/stanity/tarball/%s' % version,
+    download_url='https://github.com/hammerlab/stanity/tarball/%s' % versioneer.get_version(),
     entry_points={
     },
     classifiers=[

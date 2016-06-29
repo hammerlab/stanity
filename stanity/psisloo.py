@@ -1,5 +1,5 @@
 
-import psis
+from .psis import psisloo as _psisloo
 import pandas
 import math
 import numpy
@@ -38,7 +38,7 @@ class Psisloo(object):
     """
     def __init__(self, log_likelihood):
         self.log_lik = log_likelihood
-        self.result = psis.psisloo(log_lik=self.log_lik)
+        self.result = _psisloo(log_lik=self.log_lik)
         self.looic = -2*self.result[0]
         self.elpd = self.result[0]
         self.pointwise = pandas.DataFrame(

@@ -8,6 +8,7 @@ __all__ = [
     "fit",
     "psisloo",
     "Psisloo",
+    "psis",
     "loo_compare",
     "print_dict",
 ]
