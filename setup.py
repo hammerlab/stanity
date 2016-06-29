@@ -2,12 +2,12 @@ try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
-
-version = "0.2.2"
+import versioneer
 
 setup(
     name="stanity",
-    version=version,
+    version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass(),
     author="Jacki Buros and Tim O'Donnell",
     author_email="timodonnell@gmail.com",
     packages=["stanity"],
@@ -15,7 +15,7 @@ setup(
     license="Apache License",
     description="Helper library for working with Stan models in Python",
     long_description=open('README.rst').read(),
-    download_url='https://github.com/hammerlab/stanity/tarball/%s' % version,
+    download_url='https://github.com/hammerlab/stanity/tarball/%s' % versioneer.get_version(),
     entry_points={
     },
     classifiers=[
