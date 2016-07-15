@@ -1,48 +1,39 @@
-sudo: false  # Use container-based infrastructure
+sudo: false
 language: python
 python:
-  - "2.7"
-  - "3.4"
+- '2.7'
+- '3.4'
 before_install:
-  # Commands below copied from: http://conda.pydata.org/docs/travis.html
-  # We do this conditionally because it saves us some downloading if the
-  # version is the same.
-  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
-      wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh;
-    else
-      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-    fi
-  - bash miniconda.sh -b -p $HOME/miniconda
-  - export PATH="$HOME/miniconda/bin:$PATH"
-  # reset the shell's lookup table for program name to path mappings
-  - hash -r
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  # Useful for debugging any issues with conda
-  - conda info -a
+- if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
+  -O miniconda.sh; else wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  -O miniconda.sh; fi
+- bash miniconda.sh -b -p $HOME/miniconda
+- export PATH="$HOME/miniconda/bin:$PATH"
+- hash -r
+- conda config --set always_yes yes --set changeps1 no
+- conda update -q conda
+- conda info -a
 addons:
   apt:
     packages:
-    # install pandoc for use with pypandoc for converting the README
-    # from markdown to RST
     - pandoc
 install:
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION numpy scipy nose pandas matplotlib
-  - source activate test-environment
-  - conda install -c bioconda pysam=0.9.0
-  - pip install pypandoc
-  - pip install -r requirements.txt
-  - pip install .
-  - pip install coveralls
+- conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION numpy scipy nose
+  pandas matplotlib
+- source activate test-environment
+- conda install -c bioconda pysam=0.9.0
+- pip install pypandoc
+- pip install -r requirements.txt
+- pip install .
+- pip install coveralls
 script:
-  - nosetests test --with-coverage --cover-package=stanity && ./lint.sh
-after_success:
-  coveralls
+- nosetests test --with-coverage --cover-package=stanity && ./lint.sh
+after_success: coveralls
 deploy:
   provider: pypi
   user: hammerlab
   password:
-    secure:
+    secure: D1cDxIyFIEMXtty+uuk/mZFqvnaI0N3QVjyVbPxILycTWPwg+QX32q6SgXIXVHQGWiYb4c4cftU+IKIT2Jq3+sZazn2e5VtO8wQqhNpsuI2UVRsbicN/ed+Q+3V1jnwppOxXpo4kGVRZmlZpl/Zmyrk5abkbzOLxQ+FUYbeyrLfYpfMlVpgXRpCVCFKBRGaRK7/P2Il7C0gu4NhcV9EB+rYaq2MKRQzJ8O0sDA6KBefW88xn/npQcotVp1RkZvJ3pARRLnglsy0D4CNtSoB1mdgX+W7qVEvASuy/dfMdp2MwMAKwncTnecwSR8FqLcqRyQP6SeZtbuwVhcIruFLZua0HuZtOMPEaW7jhKCBAZR4qyVFJkUz82zofJQP4UjK5GRp4J0db+ewSlnSk2ppzPMTguz7K/CzDhZRtlIeWlQc+taTj5Eq6ZlZsrc2gG19/2EMus4JG/BESgy9Xc7mDrYEHrs3l258HFxPbyeRJh1D9YUn3fzer9yDgxELNWCIN73pgFQOGBkUVMH6Q18Ni2pUxYMr+GYkgm/N4pnEcY6m4Jl7Nu3e4wocigjW/xuCCNGI6pW7AQpHMdo4o/13ema5KXd5ikNgTz1odvFXF9bHvOPUNyoXsWYjov0OT2qSAUzIyioBWWwrsOFIZ1hyoTed/Ts/fAm+BIWRtNa4dbX8=
   on:
     branch: master
     tags: true
