@@ -21,7 +21,7 @@ install:
 - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION numpy scipy nose pylint
   pandas matplotlib
 - source activate test-environment
-- conda install -c bioconda
+- conda install -c bioconda pysam=0.9.0
 - pip install pypandoc
 - pip install .
 - pip install coveralls
