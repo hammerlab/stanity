@@ -23,7 +23,6 @@ install:
 - source activate test-environment
 - conda install -c bioconda pysam=0.9.0
 - pip install pypandoc
-- pip install -r requirements.txt
 - pip install .
 - pip install coveralls
 script:
