@@ -18,8 +18,8 @@ addons:
     packages:
     - pandoc
 install:
-- conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION numpy scipy nose pylint
-  pandas matplotlib
+- conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION numpy scipy nose
+  pylint pandas matplotlib
 - source activate test-environment
 - pip install pypandoc
 - pip install .
@@ -30,8 +30,9 @@ after_success: coveralls
 deploy:
   provider: pypi
   user: hammerlab
-  password:
-    secure: D1cDxIyFIEMXtty+uuk/mZFqvnaI0N3QVjyVbPxILycTWPwg+QX32q6SgXIXVHQGWiYb4c4cftU+IKIT2Jq3+sZazn2e5VtO8wQqhNpsuI2UVRsbicN/ed+Q+3V1jnwppOxXpo4kGVRZmlZpl/Zmyrk5abkbzOLxQ+FUYbeyrLfYpfMlVpgXRpCVCFKBRGaRK7/P2Il7C0gu4NhcV9EB+rYaq2MKRQzJ8O0sDA6KBefW88xn/npQcotVp1RkZvJ3pARRLnglsy0D4CNtSoB1mdgX+W7qVEvASuy/dfMdp2MwMAKwncTnecwSR8FqLcqRyQP6SeZtbuwVhcIruFLZua0HuZtOMPEaW7jhKCBAZR4qyVFJkUz82zofJQP4UjK5GRp4J0db+ewSlnSk2ppzPMTguz7K/CzDhZRtlIeWlQc+taTj5Eq6ZlZsrc2gG19/2EMus4JG/BESgy9Xc7mDrYEHrs3l258HFxPbyeRJh1D9YUn3fzer9yDgxELNWCIN73pgFQOGBkUVMH6Q18Ni2pUxYMr+GYkgm/N4pnEcY6m4Jl7Nu3e4wocigjW/xuCCNGI6pW7AQpHMdo4o/13ema5KXd5ikNgTz1odvFXF9bHvOPUNyoXsWYjov0OT2qSAUzIyioBWWwrsOFIZ1hyoTed/Ts/fAm+BIWRtNa4dbX8=
   on:
     branch: master
     tags: true
+env:
+  global:
+    secure: UoNE+LpXOR0J0bedhspkpT6es2TNVSnGfftMpn2GsIGCu9chxfg8NCNBscZybanDytcIuLadxfrc+jHIE4i85PGpQeKa3dIYXWYW7D7pL1c/cqb8KhTVrzfn1N9av91Rvcv+LnkqMIkyDwxH++1N2dq2flGxA3O5YD4uZz0dHzpA/T3sKec0BKwtnuZ2wi7E9HV7enMhPpoRESm6pCd6UZ5NXhN0qO0Y6zJ6DtwF704KFMrXb2EnWThEDVx13V678xswsvGDqD03E2RPcr27c2h5MV3aUqh9gesJTgenU6FjjAR1q/hz30Bb+shA8xivCcuh6y/i1TdCxhSnL/77hwCiGiVMFOnmUy8rABFpD0/Sju3CDZid0uY9nfDCae+ARUhE9moVkJTVg0Q377XWP/RmiANduUq6KHYn6h43fY9T+3nK3ChSqUu30cgSJ3/J1NDSPZucGMqvJdYOsVUo9vzTM3t6D5gze0PYl7LwdkEla9Cjix0JtuMamXgC0Y83/7mms6i9pZbFd9hxhQlBeJiMGTdpiEPOCnNJ/+wp7mVFQScsjInxTiOEj+G1WewvDLX2MlzatuoLVtCm34X5mtyixEm1XFG1gxjz0mt5HsSxOHj8EFPmzxkt8nh/1OQ3flIfgsRGY0F8hi+pykgXnN0WQfS52zZyBw9TxjfLegs=
