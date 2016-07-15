@@ -1,7 +1,7 @@
 .. image:: https://travis-ci.org/hammerlab/stanity.svg
    :target: https://travis-ci.org/hammerlab/stanity
    :alt: build status
-.. image:: https://coveralls.io/repos/github/hammerlab/stanity/badge.svg
+.. image:: https://coveralls.io/repos/github/hammerlab/stanity/badge.svg?branch=master
    :target: https://coveralls.io/github/hammerlab/stanity
    :alt: coverage
 
