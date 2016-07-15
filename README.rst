@@ -4,7 +4,8 @@
 .. image:: https://coveralls.io/repos/github/hammerlab/stanity/badge.svg?branch=master
    :target: https://coveralls.io/github/hammerlab/stanity
    :alt: coverage
-
+.. image:: https://badge.fury.io/py/stanity.svg
+    :target: https://badge.fury.io/py/stanity
 
 stanity
 =========
