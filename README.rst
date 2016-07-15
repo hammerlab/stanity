@@ -1,3 +1,12 @@
+.. image:: https://travis-ci.org/hammerlab/stanity.svg?branch=setup-travis
+   :height: 100px
+   :width: 200 px
+   :scale: 50 %
+   :alt: build status
+   :align: right
+   :target: https://travis-ci.org/hammerlab/stanity
+
+
 stanity
 =========
 python convenience functions for working with Stan models (via pystan)
