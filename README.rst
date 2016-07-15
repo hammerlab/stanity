@@ -1,10 +1,9 @@
 .. image:: https://travis-ci.org/hammerlab/stanity.svg?branch=setup-travis
-   :height: 100px
-   :width: 200 px
-   :scale: 50 %
-   :alt: build status
-   :align: right
    :target: https://travis-ci.org/hammerlab/stanity
+   :alt: build status
+.. image:: https://coveralls.io/repos/github/hammerlab/stanity/badge.svg
+   :target: https://coveralls.io/github/hammerlab/stanity
+   :alt: coverage
 
 
 stanity
