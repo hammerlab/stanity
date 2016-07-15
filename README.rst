@@ -1,3 +1,11 @@
+.. image:: https://travis-ci.org/hammerlab/stanity.svg?branch=setup-travis
+   :target: https://travis-ci.org/hammerlab/stanity
+   :alt: build status
+.. image:: https://coveralls.io/repos/github/hammerlab/stanity/badge.svg?branch=setup-travis
+   :target: https://coveralls.io/github/hammerlab/stanity
+   :alt: coverage
+
+
 stanity
 =========
 python convenience functions for working with Stan models (via pystan)
