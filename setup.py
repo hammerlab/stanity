@@ -20,7 +20,7 @@ import versioneer
 
 setup(
     name="stanity",
-    version="0.1.0",  #versioneer.get_version(),
+    version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
     author="Jacki Buros and Tim O'Donnell",
     author_email="timodonnell@gmail.com",
