@@ -22,7 +22,16 @@ stanity.loo_compare
 
 Installation
 -------------
-From a git checkout, run:
+
+Install from pip:
+
+::
+
+   pip install stanity
+
+::
+
+Or, from a git checkout, run:
 
 ::
 
