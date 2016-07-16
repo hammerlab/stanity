@@ -50,6 +50,5 @@ setup(
         "future>=0.14.3",
         "pandas",
         "seaborn",
-        "matplotlib",
     ],
 )
