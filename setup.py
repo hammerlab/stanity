@@ -42,13 +42,13 @@ setup(
         "Programming Language :: Python :: 3.4",
     ],
     install_requires=[
+        "Cython>=0.19",
+        "numpy",
         "pystan",
         "nose",
         "typechecks",
         "future>=0.14.3",
         "pandas",
         "seaborn",
-        "matplotlib",
-    "numpy",
     ],
 )
