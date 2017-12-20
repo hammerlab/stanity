@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Pareto smoothed importance sampling (PSIS)
 
 This module implements Pareto smoothed importance sampling (PSIS) and PSIS
