@@ -309,7 +309,7 @@ def gpdfitnew(x, sort=True, sort_in_place=False, return_quadrature=False):
     b = np.sum(bs * w)
     # Estimate for k, note that we return a negative of Zhang and
     # Stephens's k, because it is more common parameterisation.
-    temp = (-b) * x
+    temp = (-b) * x # pylint: disable=invalid-unary-operand-type
     np.log1p(temp, out=temp)
     k = np.mean(temp)
     if return_quadrature:
