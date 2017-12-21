@@ -19,7 +19,7 @@ addons:
     - pandoc
 install:
 - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION numpy scipy nose
-  pylint==1.6.5 pandas matplotlib
+  pylint=1.6.5 pandas matplotlib
 - source activate test-environment
 - pip install pypandoc
 - pip install .
